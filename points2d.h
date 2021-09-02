@@ -117,7 +117,12 @@ class Points2D {
   // const version.
   // abort() if out-of-range.
   const std::array<Object, 2>& operator[](size_t location) const { 
-    // Code missing.
+    return this->sequence_[location];
+  }
+
+  ostream &operator<<( ostream & out, const Points2D & rhs) {
+    out << rhs.size;
+    return out;
   }
 
  //  @c1: A sequence.
