@@ -120,10 +120,6 @@ class Points2D {
     return this->sequence_[location];
   }
 
-  ostream &operator<<( ostream & out, const Points2D & rhs) {
-    out << rhs.size;
-    return out;
-  }
 
  //  @c1: A sequence.
  //  @c2: A second sequence.
@@ -135,7 +131,8 @@ class Points2D {
 
  // Overloading the << operator.
  friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
-   // Code missing.
+   out << "piss";
+   return out;
  }
  
   std::array<Object, 2> *sequence_;

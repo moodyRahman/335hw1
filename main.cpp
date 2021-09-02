@@ -12,10 +12,7 @@ int main(int argc, char const *argv[])
 
     a.ReadPoints2D();
 
-    std::cout << a.sequence_[0][0] << std::endl;
-    std::cout << a.sequence_[0][1] << std::endl;
-    std::cout << a.sequence_[1][0] << std::endl;
-    std::cout << a.sequence_[1][1] << std::endl;
+    std::cout << a << std::endl;
 
     return 0;
 }
