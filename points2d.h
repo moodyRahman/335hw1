@@ -31,19 +31,13 @@ class Points2D {
   // Copy-constructor.
   Points2D(const Points2D &rhs)
   {
-    if (rhs.size_ > 0)
+
+    this->sequence_ = new std::array<Object, 2> [rhs.size_];
+    this->size_ = rhs.size_;
+    for (size_t x = 0; x < rhs.size_; x++)
     {
-      this->sequence_ = new std::array<Object, 2>[rhs.size()];
-      for(size_t x = 0; x < rhs.size(); x++)
-      {
-        this->sequence_[x][0] = rhs.sequence_[x][0];
-        this->sequence_[x][1] = rhs.sequence_[x][1];
-      }
-    }
-    else 
-    {
-      this->sequence_ = nullptr;
-      this->size_ = 0;
+      this->sequence_[x][0] = rhs[x][0];
+      this->sequence_[x][1] = rhs[x][1];
     }
 
   };
