@@ -74,7 +74,11 @@ class Points2D {
 
   ~Points2D()
   {
-    delete this->sequence_;
+    if (this->size_ > 0)
+    {
+      delete this->sequence_;
+    }
+
   };
 
   // End of big-five.
