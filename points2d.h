@@ -31,12 +31,21 @@ class Points2D {
   // Copy-constructor.
   Points2D(const Points2D &rhs)
   {
-    this->sequence_ = new std::array<Object, 2>[rhs.size()];
-    for(int x = 0; x < rhs.size(); x++)
+    if (rhs.size_ > 0)
     {
-      this->sequence_[x][0] = rhs.sequence_[x][0];
-      this->sequence_[x][1] = rhs.sequence_[x][1];
+      this->sequence_ = new std::array<Object, 2>[rhs.size()];
+      for(size_t x = 0; x < rhs.size(); x++)
+      {
+        this->sequence_[x][0] = rhs.sequence_[x][0];
+        this->sequence_[x][1] = rhs.sequence_[x][1];
+      }
     }
+    else 
+    {
+      this->sequence_ = nullptr;
+      this->size_ = 0;
+    }
+
   };
 
   // Copy-assignment. If you have already written
@@ -56,8 +65,8 @@ class Points2D {
 
   // Move-constructor. 
   Points2D(Points2D &&rhs)
-  : size_ {rhs.size_}
-  , sequence_ {rhs.sequence_}
+  : sequence_ {rhs.sequence_}
+  , size_ {rhs.size_}
   {
     rhs.size_ = 0;
     rhs.sequence_ = nullptr;
@@ -68,8 +77,14 @@ class Points2D {
   // Just use std::swap() for all variables.
   Points2D& operator=(Points2D &&rhs)
   {
-    std::swap(this->sequence_, rhs.sequence_);
-    std::swap(this->size_, rhs.size_);
+    if (this != &rhs)
+    {
+      delete this->sequence_;
+      this->sequence_ = rhs.sequence_;
+      this->size_ = rhs.size_;
+      rhs.sequence_ = nullptr;
+    }
+    return *this;
   };
 
   ~Points2D()
@@ -101,6 +116,7 @@ class Points2D {
     // Read size of sequence (an integer).
     int size_of_sequence;
     input_stream >> size_of_sequence;
+    this->size_ = size_of_sequence;
     this->sequence_ = new std::array<Object, 2>[size_of_sequence];
     
     Object token;
@@ -125,19 +141,26 @@ class Points2D {
   }
 
 
- //  @c1: A sequence.
- //  @c2: A second sequence.
- //  @return their sum. If the sequences are not of the same size, append the
- //    result with the remaining part of the larger sequence.
- friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
-   // Code missing.
- }
+  //  @c1: A sequence.
+  //  @c2: A second sequence.
+  //  @return their sum. If the sequences are not of the same size, append the
+  //    result with the remaining part of the larger sequence.
+  friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
+    // Code missing.
+  }
 
- // Overloading the << operator.
- friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
-   out << "piss";
-   return out;
- }
+  // Overloading the << operator.
+  friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
+    for(size_t x = 0; x < some_points2.size_; x++)
+    {
+      out << some_points2[x][0];
+      out << " ";
+      out << some_points2[x][1];
+      out << " | ";
+    }
+    
+    return out;
+    }
  
   std::array<Object, 2> *sequence_;
   // Size of sequence.
