@@ -163,10 +163,11 @@ class Points2D {
   friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
     for(size_t x = 0; x < some_points2.size_; x++)
     {
+      out << "(";
       out << some_points2[x][0];
-      out << " ";
+      out << ", ";
       out << some_points2[x][1];
-      out << " | ";
+      out << ") ";
     }
     
     return out;
