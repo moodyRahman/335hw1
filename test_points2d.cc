@@ -28,9 +28,7 @@ void TestPart1() {
     cout << "Enter a sequence of points (integer)" << endl;
     b.ReadPoints2D();  // Enter another sequence.
     cout << "Output2: " << endl;
-    cout << b;
-    std::cout << "bouta start bugging" << std::endl;
-    
+    cout << b;                  
     Points2D<int> c{a};  // Calls copy constructor for c.
     cout << "After copy constructor1 c{a}: " << endl;
     cout << c;
