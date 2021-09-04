@@ -153,6 +153,23 @@ class Points2D {
       out[x][0] = c1[x][0] + c2[x][0];
       out[x][1] = c1[x][1] + c2[x][1];
     }
+
+    if (c1.size_ > c2.size_)
+    {
+      for (size_t x = smallest; x < biggest; x++)
+      {
+        out[x][0] = c1[x][0];
+        out[x][1] = c1[x][1];
+      }
+    }
+    else
+    {
+      for (size_t x = smallest; x < biggest; x++)
+      {
+        out[x][0] = c2[x][0];
+        out[x][1] = c2[x][1];
+      }
+    }
     
 
     return out;
