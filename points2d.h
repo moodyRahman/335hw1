@@ -28,10 +28,16 @@ class Points2D {
     this->size_ = 0;
   };
 
+  Points2D<Object>(int s)
+  {
+    this->size_ = s;
+    this->sequence_ = new std::array<Object, 2>[s];
+  };
+
   // Copy-constructor.
   Points2D(const Points2D &rhs)
   {
-
+    std::cout << "deep copy-ing" << std::endl;
     this->sequence_ = new std::array<Object, 2> [rhs.size_];
     this->size_ = rhs.size_;
     for (size_t x = 0; x < rhs.size_; x++)
@@ -73,10 +79,8 @@ class Points2D {
   {
     if (this != &rhs)
     {
-      delete this->sequence_;
-      this->sequence_ = rhs.sequence_;
-      this->size_ = rhs.size_;
-      rhs.sequence_ = nullptr;
+      std::swap(this->sequence_, rhs.sequence_);
+      std::swap(this->size_, rhs.size_);
     }
     return *this;
   };
@@ -130,7 +134,7 @@ class Points2D {
   // @returns the point at @location.
   // const version.
   // abort() if out-of-range.
-  const std::array<Object, 2>& operator[](size_t location) const { 
+  std::array<Object, 2>& operator[](int location) const { 
     return this->sequence_[location];
   }
 
@@ -140,7 +144,19 @@ class Points2D {
   //  @return their sum. If the sequences are not of the same size, append the
   //    result with the remaining part of the larger sequence.
   friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
-    // Code missing.
+    size_t biggest = c1.size_ > c2.size_ ? c1.size_ : c2.size_;
+    size_t smallest = c1.size_ < c2.size_ ? c1.size_ : c2.size_;
+
+    Points2D out (biggest);
+
+    for (size_t x = 0; x < smallest; x++)
+    {
+      out[x][0] = c1[x][0] + c2[x][0];
+      out[x][1] = c1[x][1] + c2[x][1];
+    }
+    
+
+    return out;
   }
 
   // Overloading the << operator.
