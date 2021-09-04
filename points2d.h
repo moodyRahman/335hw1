@@ -183,7 +183,7 @@ class Points2D {
       out << some_points2[x][0];
       out << ", ";
       out << some_points2[x][1];
-      out << ")";
+      out << ") ";
     }
     
     return out;
