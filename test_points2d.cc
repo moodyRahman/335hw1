@@ -44,7 +44,7 @@ void TestPart1() {
     a = move(e);  // Move assignment operator for a.
     cout << a;
     cout << e;
-}
+}  
 
 void TestPart2() {
     Points2D<double> a, b;
