@@ -37,7 +37,6 @@ class Points2D {
   // Copy-constructor.
   Points2D(const Points2D &rhs)
   {
-    std::cout << "deep copy-ing" << std::endl;
     this->sequence_ = new std::array<Object, 2> [rhs.size_];
     this->size_ = rhs.size_;
     for (size_t x = 0; x < rhs.size_; x++)
