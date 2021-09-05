@@ -1,5 +1,6 @@
-// --> YOUR NAME here
-// Few comments describing the class Points2
+// Moududur "Moody" Rahman
+// This template class implements a series of 2D points. It's big five
+// functions are all hand-implemented. 
 
 #ifndef CSCI335_HOMEWORK1_POINTS2D_H_
 #define CSCI335_HOMEWORK1_POINTS2D_H_
@@ -12,8 +13,7 @@
 
 namespace teaching_project {
 
-// Place comments that provide a brief explanation of the class,
-// and its sample usage.
+// use the ReadPoints2D method to read from stdin to the class datas
 template<typename Object>
 class Points2D {
  public:
@@ -26,6 +26,7 @@ class Points2D {
   Points2D<Object>()
   {
     this->size_ = 0;
+    this->sequence_ = nullptr;
   };
 
   Points2D<Object>(int s)
@@ -106,6 +107,7 @@ class Points2D {
   // Read a chain from standard input.
   void ReadPoints2D() {
     // Part of code included (without error checking).
+    std::cout << std::endl;
     std::string input_line;
     std::getline(std::cin, input_line); 
     std::stringstream input_stream(input_line);
@@ -177,6 +179,12 @@ class Points2D {
 
   // Overloading the << operator.
   friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
+    if (some_points2.size_ == 0)
+    {
+      out << "()" << std::endl;
+      return out;
+    }
+    
     for(size_t x = 0; x < some_points2.size_; x++)
     {
       out << "(";
@@ -185,9 +193,11 @@ class Points2D {
       out << some_points2[x][1];
       out << ") ";
     }
+
+    out << std::endl;
     
     return out;
-    }
+  }
  
   std::array<Object, 2> *sequence_;
   // Size of sequence.
