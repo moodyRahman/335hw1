@@ -135,6 +135,8 @@ class Points2D {
   // @returns the point at @location.
   // const version.
   // abort() if out-of-range.
+  // removed the const from the starter code to let this function return a
+  // mutable reference
   std::array<Object, 2>& operator[](int location) const { 
     return this->sequence_[location];
   }
