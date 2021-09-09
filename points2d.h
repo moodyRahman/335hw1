@@ -1,6 +1,6 @@
 // Moududur "Moody" Rahman
 // This template class implements a series of 2D points. It's big five
-// functions are all hand-implemented.
+// functions are all hand-implemented. 
 
 #ifndef CSCI335_HOMEWORK1_POINTS2D_H_
 #define CSCI335_HOMEWORK1_POINTS2D_H_
@@ -31,12 +31,14 @@ namespace teaching_project
       this->sequence_ = nullptr;
     };
 
+      // construct a new blank Points2D with a given size, s 
     Points2D<Object>(int s)
     {
       this->size_ = s;
       this->sequence_ = new std::array<Object, 2>[s];
     };
 
+    // take data from an Points2D reference and copy it over to this instance
     // Copy-constructor.
     Points2D(const Points2D &rhs)
     {
@@ -57,6 +59,7 @@ namespace teaching_project
     // std::swap(*this, copy);
     // return *this;
     // }
+    // swap idiom implemented 
     Points2D &operator=(const Points2D &rhs)
     {
       Points2D copy = rhs;
@@ -65,6 +68,7 @@ namespace teaching_project
     };
 
     // Move-constructor.
+    // allows for curly brace initialization paramters
     Points2D(Points2D &&rhs)
         : sequence_{rhs.sequence_}, size_{rhs.size_}
     {
@@ -84,6 +88,7 @@ namespace teaching_project
       return *this;
     };
 
+    // destructor ensures all memory is freed
     ~Points2D()
     {
       if (this->size_ > 0)
@@ -182,6 +187,7 @@ namespace teaching_project
     }
 
     // Overloading the << operator.
+    // allows for writing the object directly to an osstream
     friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2)
     {
       if (some_points2.size_ == 0)
@@ -204,6 +210,7 @@ namespace teaching_project
       return out;
     }
 
+    // field variables
     std::array<Object, 2> *sequence_;
     // Size of sequence.
     size_t size_;
